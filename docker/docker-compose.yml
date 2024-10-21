@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql8.0
+    restart: always
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_USER: example-user
+      MYSQL_PASSWORD: example-password
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: example-db
+      TZ: 'Asia/Seoul'
+    volumes:
+      - example-db:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  example-db:
